@@ -1,4 +1,5 @@
 ﻿using BookKeeper.Models;
+using BookKeeper.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -11,11 +12,11 @@ namespace BookKeeper.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private IFileService _fileService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IFileService fileService)
         {
-            _logger = logger;
+            _fileService = fileService;
         }
 
         public IActionResult Index()

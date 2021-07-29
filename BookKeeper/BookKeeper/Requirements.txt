@@ -21,4 +21,12 @@ Advanced optional:
 	0. Add new saving mode - which would save data into .text file
 	1. Be able to configure Json, Text, or Memory storage in appsettings.json
 	2. Non-function -> the controllers should be minimal -> All main jobs should be done in service classes.
+
+Extra advanced (Independent learning) ->
+
+1. Create ASP.NET Web API which would have all this functionality.
+2. Move services and models into separate class library (and have both Razor and WebApi project in a single solution)
+
+
+
 	
