@@ -1,16 +1,16 @@
-using BookKeeper.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MySqlConnector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BookKeeper
+namespace MySqlExample
 {
     public class Startup
     {
@@ -24,26 +24,8 @@ namespace BookKeeper
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<MySqlConnection>(_ => new MySqlConnection(Configuration["ConnectionStrings:Default"]));
             services.AddControllersWithViews();
-
-            //services.AddScoped<IFileService, TextFileService>();
-
-            string fileServiceType = Configuration.GetValue<string>("FileServiceType");
-
-            if (fileServiceType == "Json")
-            {
-                services.AddScoped<IFileService, JsonFileService>();
-            }
-            else if (fileServiceType == "Text")
-            {
-                services.AddScoped<IFileService, TextFileService>();
-            }
-            else
-            {
-                //services.AddSingleton<IFileService, MemoryFileService>();
-            }
-
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

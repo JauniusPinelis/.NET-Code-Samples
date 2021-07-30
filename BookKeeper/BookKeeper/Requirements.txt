@@ -16,7 +16,7 @@ Nonfunctional requirements:
 2. Have writing/reading data in separate file (service) rather than controller.
 
 
-Advanced optional:
+Advanced:
 	-1. Add new tab in navigation bar "Authors" -> the page just lists all the authors in the books
 	0. Add new saving mode - which would save data into .text file
 	1. Be able to configure Json, Text, or Memory storage in appsettings.json
@@ -24,7 +24,8 @@ Advanced optional:
 
 Extra advanced (Independent learning) ->
 
-1. Create ASP.NET Web API which would have all this functionality.
+1. Create ASP.NET Web API which would have all this functionality 
+(You should be to add and get books by using Postman)
 2. Move services and models into separate class library (and have both Razor and WebApi project in a single solution)
 
 
