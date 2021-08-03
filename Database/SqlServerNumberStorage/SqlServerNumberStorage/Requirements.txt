@@ -1,11 +1,11 @@
-﻿Creating an application which stores numbers in Sql Server Database.
+﻿Creating an application which stores numbers (whole numbers -> integers) in Sql Server Database.
 
 We will have two pages for this application:
 Index -> This page will fetch all the numbers from the Sql Database Table
 Enter Number -> Entering a number should store in a database.
 
 Database should be called "NumbersDatabase"
-The Table to store should be called "NumbersTable"
+The Table to store should be called "NumbersTable" (Most likely columns should be "Id" and "Number")
 
 Advanced Requirements:
 1. Entering number should only allows unique numbers:
