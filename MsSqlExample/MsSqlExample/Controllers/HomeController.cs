@@ -12,30 +12,52 @@ namespace MsSqlExample.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private SqlConnection _connection;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(SqlConnection connection)
         {
-            _logger = logger;
+            _connection = connection;
         }
 
         public IActionResult Index()
         {
-            string connectionString = "Server=.;Database=ShopDb;Integrated Security=SSPI;";
-            SqlConnection connection = new SqlConnection(connectionString);
+            List<ItemModel> items = new();
 
-            connection.Open();
+            _connection.Open();
 
-            using var command = new SqlCommand("SELECT * FROM dbo.Items;", connection);
+            using var command = new SqlCommand("SELECT Id, Name FROM dbo.Items;", _connection);
             using var reader = command.ExecuteReader();
             while (reader.Read())
             {
-                int id = reader.GetInt32(0);
+                items.Add(new ItemModel()
+                {
+                    Id = reader.GetInt32(0),
+                    Name = reader.GetString(1)
+                });
             }
 
-            connection.Close();
+            _connection.Close();
 
-            return View();
+            return View(items);
+        }
+
+        public IActionResult DisplayAddNewItem()
+        {
+            return View("AddNewItem");
+        }
+
+        public IActionResult AddNewItem(ItemModel model)
+        {
+            _connection.Open();
+
+            string insertText = $"insert into dbo.Items (Name) values('{model.Name}'); ";
+
+            SqlCommand command = new SqlCommand(insertText, _connection);
+            command.ExecuteNonQuery();
+
+            _connection.Close();
+
+            return RedirectToAction("Index");
         }
 
         public IActionResult Privacy()
