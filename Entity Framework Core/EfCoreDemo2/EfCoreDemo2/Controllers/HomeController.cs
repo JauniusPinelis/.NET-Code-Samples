@@ -23,7 +23,11 @@ namespace EfCoreDemo2.Controllers
 
         public IActionResult Index()
         {
-            var items = _context.ShopItems.ToList();
+            _context.ShopItems.Add(new ShopItem()
+            {
+                Name = "test"
+            });
+            _context.SaveChanges();
             return View();
         }
 
