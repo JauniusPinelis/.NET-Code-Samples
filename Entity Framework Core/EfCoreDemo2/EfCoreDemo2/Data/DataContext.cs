@@ -1,10 +1,5 @@
 ﻿using EfCoreDemo2.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EfCoreDemo2.Data
 {
@@ -22,16 +17,17 @@ namespace EfCoreDemo2.Data
 
         }
 
-       
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ShopItem>()
                 .Property(b => b.Price)
-                .HasPrecision(20,2);
+                .HasPrecision(20, 2);
 
             modelBuilder.Entity<Shop>()
                 .HasMany(s => s.ShopItems)
-                .WithOne(si => si.Shop);
+                .WithOne(si => si.Shop)
+                .HasForeignKey(si => si.ShopId);
 
             modelBuilder.Entity<ShopItemItemTag>()
                  .HasKey(bc => new { bc.ShopItemId, bc.TagId });

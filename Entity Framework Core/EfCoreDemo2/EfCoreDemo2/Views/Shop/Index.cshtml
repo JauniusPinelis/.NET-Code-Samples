@@ -1,0 +1,8 @@
+﻿@model List<Shop>
+
+<ul>
+    @foreach (var shop in @Model)
+    {
+        <li>@shop.Name  @Html.ActionLink("Edit", "Edit", "Shop", new { id = shop.Id }, null)  @Html.ActionLink("Delete", "Delete", "Shop", new { id = shop.Id }, null)</li>
+    }
+</ul>

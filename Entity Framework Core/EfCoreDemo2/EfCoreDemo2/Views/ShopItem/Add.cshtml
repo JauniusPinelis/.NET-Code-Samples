@@ -1,0 +1,12 @@
+﻿@model ShopItem
+
+@using (Html.BeginForm("Add", "ShopItem", FormMethod.Post))
+{
+    @Html.LabelFor(s => s.Name)
+    @Html.TextBoxFor(s => s.Name)
+
+    @Html.LabelFor(s => s.Shop)
+    //@Html.DropDownListFor(s => s.Shop.Id, new MultiSelectList(Model.))
+
+    <input type="submit" value="Submit" />
+}

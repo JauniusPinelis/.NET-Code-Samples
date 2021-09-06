@@ -1,0 +1,9 @@
+﻿@model Shop
+
+@using (Html.BeginForm("Add", "Shop", FormMethod.Post))
+{
+    @Html.LabelFor(s => s.Name)
+    @Html.TextBoxFor(s => s.Name)
+
+    <input type="submit" value="Submit" />
+}
