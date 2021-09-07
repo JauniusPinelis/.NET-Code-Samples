@@ -4,13 +4,16 @@ using System.ComponentModel;
 
 namespace EfCoreDemo2.Dtos
 {
-    public class ShopItemCreate
+    public class ShopItemIndex
     {
-        public string Name { get; set; }
-
-        public List<Shop> Shops { get; set; }
-
         [DisplayName("Shop")]
         public int ShopId { get; set; }
+
+        public List<ShopItem> ShopItems { get; set; }
+
+        public List<Shop> Shops
+        {
+            get; set;
+        }
     }
 }

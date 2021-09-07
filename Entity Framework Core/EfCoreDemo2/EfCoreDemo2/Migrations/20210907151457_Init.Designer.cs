@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EfCoreDemo2.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210903163436_Try2")]
-    partial class Try2
+    [Migration("20210907151457_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,21 @@ namespace EfCoreDemo2.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.9")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("EfCoreDemo2.Models.ItemTag", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ItemTags");
+                });
 
             modelBuilder.Entity("EfCoreDemo2.Models.Shop", b =>
                 {
@@ -63,6 +78,21 @@ namespace EfCoreDemo2.Migrations
                     b.ToTable("ShopItems");
                 });
 
+            modelBuilder.Entity("EfCoreDemo2.Models.ShopItemItemTag", b =>
+                {
+                    b.Property<int>("ShopItemId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TagId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ShopItemId", "TagId");
+
+                    b.HasIndex("TagId");
+
+                    b.ToTable("ShopItemItemTags");
+                });
+
             modelBuilder.Entity("EfCoreDemo2.Models.ShopItem", b =>
                 {
                     b.HasOne("EfCoreDemo2.Models.Shop", "Shop")
@@ -72,9 +102,38 @@ namespace EfCoreDemo2.Migrations
                     b.Navigation("Shop");
                 });
 
+            modelBuilder.Entity("EfCoreDemo2.Models.ShopItemItemTag", b =>
+                {
+                    b.HasOne("EfCoreDemo2.Models.ShopItem", "ShopItem")
+                        .WithMany("ShopItemItemTags")
+                        .HasForeignKey("ShopItemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("EfCoreDemo2.Models.ItemTag", "Tag")
+                        .WithMany("ShopItemItemTags")
+                        .HasForeignKey("TagId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ShopItem");
+
+                    b.Navigation("Tag");
+                });
+
+            modelBuilder.Entity("EfCoreDemo2.Models.ItemTag", b =>
+                {
+                    b.Navigation("ShopItemItemTags");
+                });
+
             modelBuilder.Entity("EfCoreDemo2.Models.Shop", b =>
                 {
                     b.Navigation("ShopItems");
+                });
+
+            modelBuilder.Entity("EfCoreDemo2.Models.ShopItem", b =>
+                {
+                    b.Navigation("ShopItemItemTags");
                 });
 #pragma warning restore 612, 618
         }

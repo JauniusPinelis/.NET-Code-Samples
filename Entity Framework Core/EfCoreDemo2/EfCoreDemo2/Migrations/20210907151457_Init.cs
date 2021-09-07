@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace EfCoreDemo2.Migrations
 {
-    public partial class tags : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -17,6 +18,41 @@ namespace EfCoreDemo2.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ItemTags", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Shops",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Shops", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ShopItems",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Price = table.Column<decimal>(type: "decimal(20,2)", precision: 20, scale: 2, nullable: false),
+                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ShopId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ShopItems", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ShopItems_Shops_ShopId",
+                        column: x => x.ShopId,
+                        principalTable: "Shops",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -40,7 +76,7 @@ namespace EfCoreDemo2.Migrations
                         column: x => x.ShopItemId,
                         principalTable: "ShopItems",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -48,6 +84,10 @@ namespace EfCoreDemo2.Migrations
                 table: "ShopItemItemTags",
                 column: "TagId");
 
+            migrationBuilder.CreateIndex(
+                name: "IX_ShopItems_ShopId",
+                table: "ShopItems",
+                column: "ShopId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -57,6 +97,12 @@ namespace EfCoreDemo2.Migrations
 
             migrationBuilder.DropTable(
                 name: "ItemTags");
+
+            migrationBuilder.DropTable(
+                name: "ShopItems");
+
+            migrationBuilder.DropTable(
+                name: "Shops");
         }
     }
 }

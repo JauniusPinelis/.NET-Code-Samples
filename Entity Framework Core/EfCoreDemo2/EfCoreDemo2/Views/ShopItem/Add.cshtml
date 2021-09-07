@@ -1,12 +1,12 @@
-﻿@model ShopItem
+﻿@model EfCoreDemo2.Dtos.ShopItemCreate
 
 @using (Html.BeginForm("Add", "ShopItem", FormMethod.Post))
 {
     @Html.LabelFor(s => s.Name)
     @Html.TextBoxFor(s => s.Name)
 
-    @Html.LabelFor(s => s.Shop)
-    //@Html.DropDownListFor(s => s.Shop.Id, new MultiSelectList(Model.))
+    @Html.LabelFor(s => s.ShopId)
+    @Html.DropDownListFor(s => s.ShopId, new MultiSelectList(Model.Shops, "Id", "Name"))
 
     <input type="submit" value="Submit" />
 }

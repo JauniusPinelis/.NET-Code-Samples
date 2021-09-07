@@ -1,0 +1,17 @@
+﻿@model EfCoreDemo2.Dtos.ShopItemIndex
+
+@using (Html.BeginForm("Index", "ShopItem", FormMethod.Post))
+{
+
+    @Html.LabelFor(s => s.ShopId)
+    @Html.DropDownListFor(s => s.ShopId, new MultiSelectList(Model.Shops, "Id", "Name"))
+
+    <input type="submit" value="Submit" />
+}
+
+<ul>
+    @foreach (var shopItem in @Model.ShopItems)
+    {
+        <li>@shopItem.Name @shopItem.Shop?.Name   @Html.ActionLink("Edit", "Edit", "Shop", new { id = shopItem.Id }, null)  @Html.ActionLink("Delete", "Delete", "Shop", new { id = shopItem.Id }, null)</li>
+    }
+</ul>
