@@ -42,7 +42,7 @@ namespace EfCoreDemo2.Controllers
 
             var dto = new ShopItemIndex()
             {
-                ShopItems = items.Where(i => i.ShopId == model.ShopId).ToList(),
+                ShopItems = items.Where(i => i.ShopId == model.ShopId || model.ShopId == 0).ToList(),
                 Shops = allShops
             };
 

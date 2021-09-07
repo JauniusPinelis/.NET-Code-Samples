@@ -4,7 +4,7 @@
 {
 
     @Html.LabelFor(s => s.ShopId)
-    @Html.DropDownListFor(s => s.ShopId, new MultiSelectList(Model.Shops, "Id", "Name"))
+    @Html.DropDownListFor(s => s.ShopId, new MultiSelectList(Model.Shops, "Id", "Name"), "All")
 
     <input type="submit" value="Submit" />
 }
