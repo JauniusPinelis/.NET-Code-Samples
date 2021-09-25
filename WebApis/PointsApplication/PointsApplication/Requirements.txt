@@ -19,3 +19,8 @@ Non-function requirement: Controller -> Services -> Repositories -> dbContext
 4. What is swagger?
 5. What is HttpGet,HttpPost,HttpDelete
 6. FromUrl vs FromBody
+
+https://docs.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-5.0&tabs=visual-studio
+https://www.youtube.com/watch?v=vN9NRqv7xmY
+https://www.c-sharpcorner.com/article/create-simple-web-api-in-asp-net-mvc/
+
