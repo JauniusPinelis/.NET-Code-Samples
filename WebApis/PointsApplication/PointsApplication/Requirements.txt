@@ -11,6 +11,7 @@ Delete a point
 
 Extra: Assign point to a point-list
 get points by list (filtering).
+Non-function requirement: Controller -> Services -> Repositories -> dbContext
 
 1. C# asp.net web api
 2. What is restfull api.
