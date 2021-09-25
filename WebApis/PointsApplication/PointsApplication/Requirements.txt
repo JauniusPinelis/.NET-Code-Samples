@@ -9,7 +9,7 @@ Get a single point
 Get all points
 Delete a point
 
-Extra: Assign point to a point-list
+Extra: when creating Assign point to a point-list
 get points by list (filtering):
 1. We have separate resource: we can create and delete pointlist
 2. When creating new point we can specify the pointlist id
