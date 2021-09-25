@@ -1,0 +1,20 @@
+﻿Welcome to Web Apis
+
+I want you to create a Rest Web api for storing Points (like in coordinates)
+Point has x and y.
+
+I should be able to:
+Add new point
+Get a single point
+Get all points
+Delete a point
+
+Extra: Assign point to a point-list
+get points by list (filtering).
+
+1. C# asp.net web api
+2. What is restfull api.
+3. What is a Postman, how can it help in api development?
+4. What is swagger?
+5. What is HttpGet,HttpPost,HttpDelete
+6. FromUrl vs FromBody
