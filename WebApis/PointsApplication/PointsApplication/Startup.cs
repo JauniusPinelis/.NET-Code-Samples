@@ -6,6 +6,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using PointsApplication.Data;
+using PointsApplication.Repositories;
+using PointsApplication.Services;
 
 namespace PointsApplication
 {
@@ -23,6 +25,11 @@ namespace PointsApplication
         {
             services.AddDbContext<DataContext>(d =>
                 d.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddTransient<PointRepository>();
+            services.AddTransient<PointService>();
+
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
