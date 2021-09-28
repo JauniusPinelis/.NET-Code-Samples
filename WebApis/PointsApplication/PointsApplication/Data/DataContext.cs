@@ -7,6 +7,8 @@ namespace PointsApplication.Data
     {
         public DbSet<CustomPoint> Points { get; set; }
 
+        public DbSet<PointList> PointLists { get; set; }
+
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
 
@@ -14,7 +16,10 @@ namespace PointsApplication.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
+            modelBuilder.Entity<PointList>()
+                .HasMany(pl => pl.Points)
+                .WithOne()
+                .HasForeignKey(p => p.PointListId);
         }
     }
 }

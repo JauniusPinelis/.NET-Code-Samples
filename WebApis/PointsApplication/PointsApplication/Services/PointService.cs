@@ -1,5 +1,6 @@
 ﻿using PointsApplication.Entities;
 using PointsApplication.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -8,10 +9,12 @@ namespace PointsApplication.Services
     public class PointService
     {
         private PointRepository _pointRepository;
+        private PointListRepository _pointListRepository;
 
-        public PointService(PointRepository pointRepository)
+        public PointService(PointRepository pointRepository, PointListRepository pointListRepository)
         {
             _pointRepository = pointRepository;
+            _pointListRepository = pointListRepository;
         }
 
         public async Task<List<CustomPoint>> GetAllAsync()
@@ -26,6 +29,15 @@ namespace PointsApplication.Services
 
         public async Task AddAsync(CustomPoint point)
         {
+            if (point.PointListId.HasValue)
+            {
+                var pointList = await _pointListRepository.GetById(point.PointListId.Value);
+                if (pointList == null)
+                {
+                    throw new ArgumentException("PointList does not exist");
+                }
+            }
+
             await _pointRepository.AddAsync(point);
         }
 

@@ -27,8 +27,10 @@ namespace PointsApplication
                 d.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddTransient<PointRepository>();
-            services.AddTransient<PointService>();
+            services.AddTransient<PointListRepository>();
 
+            services.AddTransient<PointService>();
+            services.AddTransient<PointListService>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
