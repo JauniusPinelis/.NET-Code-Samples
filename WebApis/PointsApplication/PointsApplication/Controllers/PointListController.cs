@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using PointsApplication.Entities;
+using PointsApplication.Dtos;
 using PointsApplication.Services;
 using System.Threading.Tasks;
 
@@ -29,7 +29,7 @@ namespace PointsApplication.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(PointList pointList)
+        public async Task<IActionResult> Create(PointListCreationDto pointList)
         {
             await _pointListService.CreateAsync(pointList);
             return NoContent();

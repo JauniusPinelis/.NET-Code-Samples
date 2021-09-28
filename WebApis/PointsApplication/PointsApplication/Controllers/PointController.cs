@@ -26,11 +26,6 @@ namespace PointsApplication.Controllers
         public async Task<ActionResult> GetById(int id)
         {
             var point = await _pointService.GetByIdAsync(id);
-            if (point == null)
-            {
-                return NotFound();
-            }
-
             return Ok(point);
         }
 
