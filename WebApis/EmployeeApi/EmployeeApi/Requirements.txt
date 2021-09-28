@@ -2,7 +2,7 @@
 
 Functional Requirements:
 Employee should have these columns:
-Id, FirstName, LastName, Sex (Male/Famale/Unspecified)
+Id, FirstName, LastName, Sex (Male/Female/Unspecified)
 
 Have a api controllers for Employee where you can:
 1. Create With Post
@@ -36,3 +36,4 @@ https://codewithmukesh.com/blog/repository-pattern-in-aspnet-core/
 https://code-maze.com/automapper-net-core/
 3. Add Middleware which handles errors :
 https://code-maze.com/global-error-handling-aspnetcore/
+4. Use Enum for Sex (Enums in c#)
