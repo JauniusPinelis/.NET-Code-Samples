@@ -19,7 +19,8 @@ namespace PointsApplication.Controllers
         [HttpGet]
         public async Task<ActionResult> GetAll()
         {
-            return Ok(await _pointService.GetAllAsync());
+            var data = await _pointService.GetAllAsync();
+            return Ok(data);
         }
 
         [HttpGet("{id}")]

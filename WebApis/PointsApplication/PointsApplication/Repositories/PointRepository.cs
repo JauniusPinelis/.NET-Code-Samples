@@ -2,6 +2,7 @@
 using PointsApplication.Data;
 using PointsApplication.Entities;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace PointsApplication.Repositories
@@ -15,9 +16,14 @@ namespace PointsApplication.Repositories
             _context = context;
         }
 
-        public async Task<List<CustomPoint>> GetAsync()
+        public async Task<IEnumerable<CustomPoint>> GetAsync()
         {
             return await _context.Points.ToListAsync();
+        }
+
+        public IQueryable<CustomPoint> Query()
+        {
+            return _context.Points.Where(t => t.Id > 5);
         }
 
         public async Task<CustomPoint> GetByIdAsync(int id)

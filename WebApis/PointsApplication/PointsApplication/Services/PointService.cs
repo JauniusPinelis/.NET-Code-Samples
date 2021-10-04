@@ -1,7 +1,9 @@
-﻿using PointsApplication.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using PointsApplication.Entities;
 using PointsApplication.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace PointsApplication.Services
@@ -17,9 +19,16 @@ namespace PointsApplication.Services
             _pointListRepository = pointListRepository;
         }
 
-        public async Task<List<CustomPoint>> GetAllAsync()
+        public async Task<IEnumerable<CustomPoint>> GetAllAsync()
         {
-            return await _pointRepository.GetAsync();
+            var data = await _pointRepository.GetAsync();
+            var modified = data.ToList();
+            return modified;
+        }
+
+        public async Task<List<CustomPoint>> Query()
+        {
+            return await _pointRepository.Query().ToListAsync();
         }
 
         public async Task<CustomPoint> GetByIdAsync(int id)

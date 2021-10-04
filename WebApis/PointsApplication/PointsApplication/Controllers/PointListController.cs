@@ -28,7 +28,7 @@ namespace PointsApplication.Controllers
             return Ok(await _pointListService.GetByIdAsync(id));
         }
 
-        [HttpPost]
+        [HttpPost("/approve")]
         public async Task<IActionResult> Create(PointListCreationDto pointList)
         {
             await _pointListService.CreateAsync(pointList);
