@@ -9,31 +9,31 @@ namespace PointsApplication.Controllers
     [Route("[controller]")]
     public class PointController : ControllerBase
     {
-        private readonly PointService _pointService;
+        private readonly PointService pointService;
 
         public PointController(PointService pointService)
         {
-            _pointService = pointService;
+            this.pointService = pointService;
         }
 
         [HttpGet]
         public async Task<ActionResult> GetAll()
         {
-            var data = await _pointService.GetAllAsync();
+            var data = await pointService.GetAllAsync();
             return Ok(data);
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult> GetById(int id)
         {
-            var point = await _pointService.GetByIdAsync(id);
+            var point = await pointService.GetByIdAsync(id);
             return Ok(point);
         }
 
         [HttpPost]
         public async Task<IActionResult> Add(CustomPoint point)
         {
-            await _pointService.AddAsync(point);
+            await pointService.AddAsync(point);
 
             return NoContent();
         }
@@ -41,7 +41,7 @@ namespace PointsApplication.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            await _pointService.DeleteAsync(id);
+            await pointService.DeleteAsync(id);
 
             return NoContent();
         }

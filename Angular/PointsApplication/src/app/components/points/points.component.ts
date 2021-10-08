@@ -9,8 +9,6 @@ import { PointsService } from 'src/app/services/points.service';
 })
 export class PointsComponent implements OnInit {
 
-  private pointsService: PointsService;
-
   public x: number = 0;
   public y: number = 0;
 
@@ -21,7 +19,10 @@ export class PointsComponent implements OnInit {
   ];
   public title:string = "Points";
 
+  private pointsService: PointsService;
+
   constructor(pointsService: PointsService) {
+    
     this.pointsService = pointsService;
    }
 
@@ -29,6 +30,7 @@ export class PointsComponent implements OnInit {
     this.pointsService.GetPoints().subscribe((pointsFromApi) =>{
       this.points = pointsFromApi;
     })
+
   }
 
   public addPoint() : void {
@@ -37,7 +39,12 @@ export class PointsComponent implements OnInit {
       y: this.y
     }
 
-    this.pointsService.AddPoint(newPoint).subscribe(() => {
+    var petras: Point = {
+      x: 0,
+      y: 0
+    };
+
+    this.pointsService.AddPoint(petras).subscribe(() => {
       this.points.push(newPoint);
     });
   }
