@@ -4,7 +4,11 @@
     <li *ngFor="let point of points">
         X: {{point.x}} Y: {{point.y}}
     </li>
-
-
-    <button (click)="addPoint()">Add</button>
 </ul>
+
+x
+<input type="text" [(ngModel)]="x" /> 
+y
+<input type="text" [(ngModel)]="y" /> 
+
+<button (click)="addPoint()">Add</button>
