@@ -39,12 +39,7 @@ export class PointsComponent implements OnInit {
       y: this.y
     }
 
-    var petras: Point = {
-      x: 0,
-      y: 0
-    };
-
-    this.pointsService.AddPoint(petras).subscribe(() => {
+    this.pointsService.AddPoint(newPoint).subscribe(() => {
       this.points.push(newPoint);
     });
   }
